@@ -1,5 +1,5 @@
 -- The curson image -- 
-local function Cursor(x,y)
+local function Cursor()
   local self = {}
   local _img = love.graphics.newImage("assets/img/cursor.png")
 
