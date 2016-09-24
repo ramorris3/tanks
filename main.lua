@@ -13,6 +13,7 @@ CollisionGroup = require 'tools.CollisionGroup'
 -- create global constants
 gGameWidth = 320
 gGameHeight = 240
+gGameScale = 3
 
 -- create global components
 gScaleComponent = ScaleComponent()
@@ -27,6 +28,9 @@ gStateManager = StateManager()
 MenuState = require 'states.MenuState'
 GameState = require 'states.GameState'
 
+-- pull in cursor for the reticle
+Cursor = require 'objects.Cursor'
+
 
 function love.load()
   -- init game states
@@ -34,6 +38,9 @@ function love.load()
   gStateManager.addState('game', GameState)
   -- start menu state
   gStateManager.startState('menu')
+
+  love.mouse.setVisible(false) -- make default mouse invisible
+
 end
 
 function love.update(dt)
