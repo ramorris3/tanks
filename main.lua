@@ -13,6 +13,7 @@ CollisionGroup = require 'tools.CollisionGroup'
 -- create global constants
 gGameWidth = 320
 gGameHeight = 240
+gGameScale = 3
 
 -- create global components
 gScaleComponent = ScaleComponent()
@@ -34,6 +35,9 @@ function love.load()
   gStateManager.addState('game', GameState)
   -- start menu state
   gStateManager.startState('menu')
+
+  love.mouse.setVisible(false) -- make default mouse invisible
+
 end
 
 function love.update(dt)
