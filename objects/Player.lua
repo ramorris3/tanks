@@ -1,7 +1,7 @@
 Actor = require "objects.Actor"
 
 local function Player()
-  local self = Actor(16, 24, 12, 8, 0, 3)
+  local self = Actor(16, 24, 12, 8)
 
   local _img = love.graphics.newImage('assets/img/tank.png')
 
