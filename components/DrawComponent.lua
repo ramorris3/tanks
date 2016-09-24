@@ -13,7 +13,7 @@ local function DrawComponent()
 
   --public methods--
   function self.addDrawable(d, layer)
-    local l = layer or _numLayers
+    local l = layer or _numLayers - 1
     table.insert(_layers[l], d)
   end
 
@@ -23,6 +23,13 @@ local function DrawComponent()
         local drawable = _layers[i][j]
         if drawable ~= nil then drawable.draw() end
       end
+    end
+  end
+
+  function self.reset()
+    _layers = {}
+    for i = 0, _numLayers do
+      _layers[i] = {}
     end
   end
 

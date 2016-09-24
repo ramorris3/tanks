@@ -16,6 +16,10 @@ local function UpdateComponent()
     end
   end
 
+  function self.reset()
+    _updatables = {}
+  end
+
   return self
 end
 
