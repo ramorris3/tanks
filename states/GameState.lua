@@ -1,7 +1,12 @@
 Player = require 'objects.Player'
+TileLoader = require 'tools.TileLoader'
 
 local function GameState()
-  self = {}
+  local self = {}
+
+  -- load tiles
+  local _tileLoader = TileLoader()
+  _tileLoader.loadTiles()
 
   -- init player
   local _player = Player()

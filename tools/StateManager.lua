@@ -3,7 +3,7 @@ local function StateManager()
   local self = {}
 
   local _states = {}
-  local _currentState
+  self.currentState = nil
 
   -- adding and starting states
   function self.addState(key, state)
@@ -15,9 +15,12 @@ local function StateManager()
     gDrawComponent.reset()
     gUpdateComponent.reset()
 
+    -- reset collision groups
+    gSolidGroup.reset()
+
     -- create instance of new state
     -- (this adds it to components)
-    _currentState = _states[key]()
+    self.currentState = _states[key]()
   end
 
   return self

@@ -1,5 +1,5 @@
 local function MenuState()
-  self = {}
+  local self = {}
 
   -- update and draw
   gUpdateComponent.addUpdatable(self)

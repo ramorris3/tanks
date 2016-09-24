@@ -1,10 +1,14 @@
+-- load math overrides
+require 'tools.math'
+
 -- load component modules
 ScaleComponent = require 'components.ScaleComponent'
 UpdateComponent = require 'components.UpdateComponent'
 DrawComponent = require 'components.DrawComponent'
 
--- load manager modules
+-- load manager and tool modules
 StateManager = require 'tools.StateManager'
+CollisionGroup = require 'tools.CollisionGroup'
 
 -- create global constants
 gGameWidth = 320
@@ -14,6 +18,9 @@ gGameHeight = 240
 gScaleComponent = ScaleComponent()
 gUpdateComponent = UpdateComponent()
 gDrawComponent = DrawComponent()
+
+-- create global collision
+gSolidGroup = CollisionGroup()
 
 -- create state manager and load state modules
 gStateManager = StateManager()

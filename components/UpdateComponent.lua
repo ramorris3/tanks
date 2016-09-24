@@ -12,7 +12,9 @@ local function UpdateComponent()
 
   function self.update(dt)
     for i = 0, #_updatables do
-      if _updatables[i] ~= nil then _updatables[i].update(dt) end
+      if _updatables[i] ~= nil then
+        _updatables[i].update(dt)
+      end
     end
   end
 
