@@ -12,7 +12,7 @@ CollisionGroup = require 'tools.CollisionGroup'
 
 -- create global constants
 gGameWidth = 320
-gGameHeight = 240
+gGameHeight = 248
 gGameScale = 3
 
 -- create global components
