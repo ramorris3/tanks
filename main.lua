@@ -28,9 +28,6 @@ gStateManager = StateManager()
 MenuState = require 'states.MenuState'
 GameState = require 'states.GameState'
 
--- pull in cursor for the reticle
-Cursor = require 'objects.Cursor'
-
 
 function love.load()
   -- init game states
