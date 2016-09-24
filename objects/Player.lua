@@ -1,14 +1,14 @@
 Actor = require "objects.Actor"
 
 local function Player()
-  local self = Actor(16, 16, 12, 8)
+  local self = Actor(16, 24, 12, 8)
 
   local _img = love.graphics.newImage('assets/img/tank.png')
 
   local _speed = 27
 
   gUpdateComponent.addUpdatable(self)
-  gDrawComponent.addDrawable(self)
+  gDrawComponent.addDrawable(self,2)
 
   function self.update(dt)
     if love.keyboard.isDown("w") then
@@ -25,7 +25,7 @@ local function Player()
   end
 
   function self.draw()
-    love.graphics.draw(_img,self.x,self.y)
+    love.graphics.draw(_img,self.x, self.y)
   end
 
   return self

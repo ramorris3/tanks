@@ -10,7 +10,7 @@ local function ScaleComponent()
   function self.preDraw()
     --set low-res canvas to draw to
     love.graphics.setCanvas(_canvas)
-    love.graphics.setBackgroundColor(219,185,129)
+    love.graphics.setBackgroundColor(221,190,143)
     love.graphics.clear()
   end
 
