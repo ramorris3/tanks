@@ -3,7 +3,7 @@ Actor = require "objects.Actor"
 local function Player()
   local self = Actor(16, 24, 22, 15)
 
-  local _turret_img = love.graphics.newImage('assets/img/turret/lr.png')
+  local _turret_img = love.graphics.newImage('assets/img/turret/r.png')
   local _base_img = love.graphics.newImage('assets/img/tank-base.png')
 
   local _speed = 27
@@ -36,15 +36,15 @@ local function Player()
 
   function self.get_img(angle)
     local img_dict = {
-      [-9] = 'lr.png',
-      [-7] = 'backslash.png',
-      [-5] = 'ud.png',
-      [-3] = 'slash.png',
-      [-1] = 'lr.png',
-      [1] = 'backslash.png',
-      [3] = 'ud.png',
-      [5] = 'slash.png',
-      [7] = 'lr.png',
+      [-9] = 'l.png',
+      [-7] = 'ul.png',
+      [-5] = 'u.png',
+      [-3] = 'ur.png',
+      [-1] = 'r.png',
+      [1] = 'dr.png',
+      [3] = 'd.png',
+      [5] = 'dl.png',
+      [7] = 'l.png',
     }
     local angle = math.floor((angle / math.pi) * 8)
     if (angle % 2 == 0) then angle = angle - 1 end
