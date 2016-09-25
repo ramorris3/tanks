@@ -12,21 +12,32 @@ local function Player()
   gDrawComponent.addDrawable(self,2)
 
   function self.update(dt)
+    local vector = {x=0, y=0}
     if love.keyboard.isDown("w") then
-      self.moveY(-_speed * dt)
+      vector.y = -1
     elseif love.keyboard.isDown("s") then
-      self.moveY(_speed * dt)
+      vector.y = 1
     end
 
     if love.keyboard.isDown("a") then
-      self.moveX(-_speed * dt)
+      vector.x = -1
     elseif love.keyboard.isDown("d") then
-      self.moveX(_speed * dt)
+      vector.x = 1
     end
 
-    local x, y = love.mouse.getPosition() -- get the position of the mouse
-    local angle = math.atan2(y/gGameScale - self.y, x/gGameScale - self.x)
-    _turret_img = love.graphics.newImage( 'assets/img/turret/'..self.get_img(angle) )
+    local magnitude = math.sqrt(math.abs(vector.x) + math.abs(vector.y)) --no need to square, only 1 or 0
+    if magnitude ~= 0 then
+      vector = { x=vector.x/magnitude, y=vector.y/magnitude, }
+      self.moveX(_speed * vector.x * dt)
+      self.moveY(_speed * vector.y * dt)
+      local base_angle = math.atan2(vector.y, vector.x)
+      _base_img = love.graphics.newImage( 'assets/img/base/'..self.get_img(base_angle) )
+    end
+
+    local mouse_x = love.mouse.getX()/gGameScale
+    local mouse_y = love.mouse.getY()/gGameScale
+    local turret_angle = math.atan2(mouse_y - self.y, mouse_x - self.x)
+    _turret_img = love.graphics.newImage( 'assets/img/turret/'..self.get_img(turret_angle) )
   end
 
   function self.draw()
