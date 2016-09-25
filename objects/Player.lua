@@ -1,9 +1,10 @@
 Actor = require "objects.Actor"
 
 local function Player()
-  local self = Actor(16, 24, 20, 22)
+  local self = Actor(16, 24, 22, 15)
 
-  local _img = love.graphics.newImage('assets/img/tank.png')
+  local _turret_img = love.graphics.newImage('assets/img/turret.png')
+  local _base_img = love.graphics.newImage('assets/img/tank-base.png')
 
   local _speed = 27
 
@@ -25,31 +26,33 @@ local function Player()
 
     local x, y = love.mouse.getPosition() -- get the position of the mouse
     local angle = math.atan2(y/gGameScale - self.y, x/gGameScale - self.x)
-    _img = love.graphics.newImage( self.get_img(angle) )
+    _turret_img = love.graphics.newImage( self.get_img(angle) )
   end
 
   function self.draw()
-    love.graphics.draw(_img,self.x, self.y)
+    love.graphics.draw(_base_img,self.x, self.y)
+    love.graphics.draw(_turret_img,self.x, self.y)
   end
 
   function self.get_img(angle)
-    if (angle < - 7 * math.pi / 8) then
-      return 'assets/img/l.png' end
-    if (angle < - 5 * math.pi / 8) then
-      return 'assets/img/ul.png' end
-    if (angle < - 3 * math.pi / 8) then
-      return 'assets/img/u.png' end
-    if (angle < - 1 * math.pi / 8) then
-      return 'assets/img/ur.png' end
-    if (angle < math.pi / 8) then
-      return 'assets/img/r.png' end
-    if (angle < 3 * math.pi / 8) then
-      return 'assets/img/dr.png' end
-    if (angle < 5 * math.pi / 8) then
-      return 'assets/img/d.png' end
-    if (angle < 7 * math.pi / 8) then
-      return 'assets/img/dl.png' end
-    return 'assets/img/l.png'
+    angle = angle / math.pi
+    if (angle < -7 / 8) then
+      return 'assets/img/turret/lr.png' end
+    if (angle < -5 / 8) then
+      return 'assets/img/turret/backslash.png' end
+    if (angle < -3 / 8) then
+      return 'assets/img/turret/ud.png' end
+    if (angle < -1 / 8) then
+      return 'assets/img/turret/slash.png' end
+    if (angle < 1 / 8) then
+      return 'assets/img/turret/lr.png' end
+    if (angle < 3 / 8) then
+      return 'assets/img/turret/backslash.png' end
+    if (angle < 5 / 8) then
+      return 'assets/img/turret/ud.png' end
+    if (angle < 7 / 8) then
+      return 'assets/img/turret/slash.png' end
+    return 'assets/img/turret/lr.png'
   end
 
   return self
