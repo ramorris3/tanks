@@ -3,7 +3,7 @@ Actor = require "objects.Actor"
 local function Player()
   local self = Actor(16, 24, 22, 15)
 
-  local _turret_img = love.graphics.newImage('assets/img/turret.png')
+  local _turret_img = love.graphics.newImage('assets/img/turret/lr.png')
   local _base_img = love.graphics.newImage('assets/img/tank-base.png')
 
   local _speed = 27
@@ -26,7 +26,7 @@ local function Player()
 
     local x, y = love.mouse.getPosition() -- get the position of the mouse
     local angle = math.atan2(y/gGameScale - self.y, x/gGameScale - self.x)
-    _turret_img = love.graphics.newImage( self.get_img(angle) )
+    _turret_img = love.graphics.newImage( 'assets/img/turret/'..self.get_img(angle) )
   end
 
   function self.draw()
@@ -35,24 +35,20 @@ local function Player()
   end
 
   function self.get_img(angle)
-    angle = angle / math.pi
-    if (angle < -7 / 8) then
-      return 'assets/img/turret/lr.png' end
-    if (angle < -5 / 8) then
-      return 'assets/img/turret/backslash.png' end
-    if (angle < -3 / 8) then
-      return 'assets/img/turret/ud.png' end
-    if (angle < -1 / 8) then
-      return 'assets/img/turret/slash.png' end
-    if (angle < 1 / 8) then
-      return 'assets/img/turret/lr.png' end
-    if (angle < 3 / 8) then
-      return 'assets/img/turret/backslash.png' end
-    if (angle < 5 / 8) then
-      return 'assets/img/turret/ud.png' end
-    if (angle < 7 / 8) then
-      return 'assets/img/turret/slash.png' end
-    return 'assets/img/turret/lr.png'
+    local img_dict = {
+      [-9] = 'lr.png',
+      [-7] = 'backslash.png',
+      [-5] = 'ud.png',
+      [-3] = 'slash.png',
+      [-1] = 'lr.png',
+      [1] = 'backslash.png',
+      [3] = 'ud.png',
+      [5] = 'slash.png',
+      [7] = 'lr.png',
+    }
+    local angle = math.floor((angle / math.pi) * 8)
+    if (angle % 2 == 0) then angle = angle - 1 end
+    return img_dict[angle]
   end
 
   return self
