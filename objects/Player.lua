@@ -4,7 +4,7 @@ local function Player()
   local self = Actor(16, 24, 22, 15)
 
   local _turret_img = love.graphics.newImage('assets/img/turret/r.png')
-  local _base_img = love.graphics.newImage('assets/img/tank-base.png')
+  local _base_img = love.graphics.newImage('assets/img/base/r.png')
 
   local _speed = 27
 
