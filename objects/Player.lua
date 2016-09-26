@@ -46,8 +46,8 @@ local function Player()
     end
 
     -- rotating the turret
-    local mouse_x = love.mouse.getX()/gGameScale
-    local mouse_y = love.mouse.getY()/gGameScale
+    local mouse_x = love.mouse.getScaledX()
+    local mouse_y = love.mouse.getScaledY()
     local turret_angle = math.atan2(mouse_y - self.y, mouse_x - self.x)
     _turret_img = love.graphics.newImage( 'assets/img/turret/'..self.get_img(turret_angle) )
 
@@ -86,8 +86,8 @@ local function Player()
     if bullet == nil then return end
     bullet.fireAt(self.x + self.w / 2,
       self.y + self.h / 2,
-      love.mouse.getX(),
-      love.mouse.getY())
+      love.mouse.getScaledX(),
+      love.mouse.getScaledY())
   end
 
   return self
