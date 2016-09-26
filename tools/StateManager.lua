@@ -20,6 +20,7 @@ local function StateManager()
 
     -- reset collision groups
     gSolidGroup.reset()
+    gPlayerBullets.reset()
 
     -- create instance of new state
     -- (this adds it to components)

@@ -6,9 +6,8 @@ local function Cursor()
   gDrawComponent.addDrawable(self, 5)
 
   function self.draw()
-    local x, y = love.mouse.getPosition() -- get the position of the mouse
-    x,y = math.floor(x/gGameScale), math.floor(y/gGameScale)
-    love.graphics.draw(_img, x, y) -- draw the custom mouse image
+    local x, y = love.mouse.getScaledPosition() -- get the position of the mouse
+    love.graphics.draw(_img, x-4, y-4) -- draw the custom mouse image, -4 so reticle is centered on pointer
   end
 
   return self

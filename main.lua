@@ -1,6 +1,9 @@
 -- load math overrides
 require 'tools.math'
 
+-- load mouse overrides
+require 'tools.mouse'
+
 -- load component modules
 ScaleComponent = require 'components.ScaleComponent'
 UpdateComponent = require 'components.UpdateComponent'
@@ -22,6 +25,7 @@ gDrawComponent = DrawComponent()
 
 -- create global collision
 gSolidGroup = CollisionGroup()
+gPlayerBullets = CollisionGroup()
 
 -- create state manager and load state modules
 gStateManager = StateManager()
