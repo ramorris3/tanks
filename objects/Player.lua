@@ -1,4 +1,5 @@
 Actor = require "objects.Actor"
+Bullet = require "objects.Bullet"
 
 local function Player()
   local self = Actor(16, 24, 22, 15)
@@ -8,10 +9,20 @@ local function Player()
 
   local _speed = 27
 
+  -- create bullets
+  local _cooldown = .25
+  local _fireTimer = 0
+  for i = 1,5 do
+    local bullet = Bullet()
+    bullet.active = false
+    gPlayerBullets.add(bullet)
+  end
+
   gUpdateComponent.addUpdatable(self)
   gDrawComponent.addDrawable(self,2)
 
   function self.update(dt)
+    -- movement
     local vector = {x=0, y=0}
     if love.keyboard.isDown("w") then
       vector.y = -1
@@ -34,10 +45,18 @@ local function Player()
       _base_img = love.graphics.newImage( 'assets/img/base/'..self.get_img(base_angle) )
     end
 
+    -- rotating the turret
     local mouse_x = love.mouse.getX()/gGameScale
     local mouse_y = love.mouse.getY()/gGameScale
     local turret_angle = math.atan2(mouse_y - self.y, mouse_x - self.x)
     _turret_img = love.graphics.newImage( 'assets/img/turret/'..self.get_img(turret_angle) )
+
+    -- firing a bullet
+    if _fireTimer > 0 then _fireTimer = _fireTimer - dt end
+    if love.mouse.isDown(1) and _fireTimer <= 0 then
+      _fireTimer = _cooldown
+      self.fire()
+    end
   end
 
   function self.draw()
@@ -60,6 +79,14 @@ local function Player()
     local angle = math.floor((angle / math.pi) * 8)
     if (angle % 2 == 0) then angle = angle - 1 end
     return img_dict[angle]
+  end
+
+  function self.fire()
+    local bullet = gPlayerBullets.getFirstInactive()
+    if bullet == nil then return end
+    bullet.fireAt(self.x, self.y,
+      love.mouse.getX(),
+      love.mouse.getY())
   end
 
   return self

@@ -9,7 +9,7 @@ local function CollisionGroup()
   end
 
   function self.collideWith(other, onCollide)
-    for i = 0, #_objects do
+    for i = 1, #_objects do
       if _objects[i] ~= nil then
         if _objects[i].collideWith(other) then
           if onCollide ~= nil then
@@ -24,6 +24,13 @@ local function CollisionGroup()
 
   function self.reset()
     _objects = {}
+  end
+
+  function self.getFirstInactive()
+    for i=1,#_objects do
+      if not _objects[i].active then return _objects[i] end
+    end
+    return nil
   end
 
   return self

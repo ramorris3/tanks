@@ -22,6 +22,7 @@ gDrawComponent = DrawComponent()
 
 -- create global collision
 gSolidGroup = CollisionGroup()
+gPlayerBullets = CollisionGroup()
 
 -- create state manager and load state modules
 gStateManager = StateManager()
