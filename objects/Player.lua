@@ -84,7 +84,8 @@ local function Player()
   function self.fire()
     local bullet = gPlayerBullets.getFirstInactive()
     if bullet == nil then return end
-    bullet.fireAt(self.x, self.y,
+    bullet.fireAt(self.x + self.w / 2,
+      self.y + self.h / 2,
       love.mouse.getX(),
       love.mouse.getY())
   end
