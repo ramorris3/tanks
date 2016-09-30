@@ -1,7 +1,7 @@
 Rectangle = require "objects.Rectangle"
 
 -- ACTOR CLASS --
-local function Actor(x, y, w, h, ox, oy)
+local function Actor(game, x, y, w, h, ox, oy)
   local self = Rectangle(x, y, w, h)
   -- hitbox offset (optional)
   self.ox = ox or 0
@@ -21,7 +21,7 @@ local function Actor(x, y, w, h, ox, oy)
         --move and check for collisions
         local prevX = self.x
         self.x = self.x + sign
-        if not gSolidGroup.collideWith(self) then
+        if not game.solidGroup.collideWith(self) then
           --no collision, continue incrementing pixel by pixel
           dx = dx - sign
         else
@@ -47,7 +47,7 @@ local function Actor(x, y, w, h, ox, oy)
       while dy ~= 0 do
         local prevY = self.y
         self.y = self.y + sign
-        if not gSolidGroup.collideWith(self) then
+        if not game.solidGroup.collideWith(self) then
           dy = dy - sign
         else
           self.y = prevY

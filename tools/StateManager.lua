@@ -15,12 +15,10 @@ local function StateManager()
   function self.startState(key)
     -- reset draw and update components to clear current state
     gDrawComponent.reset()
-    gCursor = Cursor()
     gUpdateComponent.reset()
 
-    -- reset collision groups
-    gSolidGroup.reset()
-    gPlayerBullets.reset()
+    -- reset cursor
+    gCursor = Cursor()
 
     -- create instance of new state
     -- (this adds it to components)
