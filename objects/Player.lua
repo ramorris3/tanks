@@ -1,8 +1,8 @@
 Actor = require "objects.Actor"
 Bullet = require "objects.Bullet"
 
-local function Player()
-  local self = Actor(16, 24, 22, 15)
+local function Player(game)
+  local self = Actor(game, 16, 24, 22, 15)
 
   local _turret_img = love.graphics.newImage('assets/img/turret/r.png')
   local _base_img = love.graphics.newImage('assets/img/base/r.png')
@@ -13,9 +13,9 @@ local function Player()
   local _cooldown = .25
   local _fireTimer = 0
   for i = 1,5 do
-    local bullet = Bullet()
+    local bullet = Bullet(game)
     bullet.active = false
-    gPlayerBullets.add(bullet)
+    game.playerBullets.add(bullet)
   end
 
   gUpdateComponent.addUpdatable(self)
@@ -82,7 +82,7 @@ local function Player()
   end
 
   function self.fire()
-    local bullet = gPlayerBullets.getFirstInactive()
+    local bullet = game.playerBullets.getFirstInactive()
     if bullet == nil then return end
     bullet.fireAt(self.x + self.w / 2,
       self.y + self.h / 2,

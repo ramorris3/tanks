@@ -1,8 +1,8 @@
 Actor = require 'objects.Actor'
 Vector2 = require 'tools.Vector2'
 
-local function Bullet()
-  local self = Actor(0, 0, 2, 2)
+local function Bullet(game)
+  local self = Actor(game, 0, 0, 2, 2)
 
   local _img = love.graphics.newImage('assets/img/bullet.png')
   local _speed = 60
