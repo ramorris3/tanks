@@ -12,7 +12,9 @@ local function MenuState()
   end
 
   function self.draw()
-    love.graphics.print("MORE TANKS!\n\npress enter to start game", 0, 0)
+    love.graphics.printf(
+      {{0,0,0}, "MORE TANKS!\n\npress enter to start game"},
+      0, 100, gGameWidth, 'center')
   end
 
   return self
