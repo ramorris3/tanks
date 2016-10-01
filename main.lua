@@ -28,6 +28,8 @@ gStateManager = StateManager()
 MenuState = require 'states.MenuState'
 GameState = require 'states.GameState'
 
+love.graphics.setNewFont("assets/ka1.ttf", 10)
+
 
 function love.load()
   -- init game states
